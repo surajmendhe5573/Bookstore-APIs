@@ -41,14 +41,12 @@ A RESTful API built with Node.js, Express.js, and MongoDB to manage books and us
 | GET    | `/books/filter`        | Filter books by author/price  | No        |
 | GET    | `/booksPagin`          | Fetch paginated books         | No        |
 
----
 
 ## Tech Stack
 
 - **Backend:** Node.js, Express.js
 - **Databases:** MongoDB
 - **Authentication:** JSON Web Tokens (JWT)
----
 
 
 ## Getting Started
