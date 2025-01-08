@@ -3,7 +3,6 @@
 ## Overview
 A RESTful API built with Node.js, Express.js, and MongoDB to manage books and user authentication. Features include user registration and login, book management (CRUD), search, filtering, and pagination.
 
----
 
 ## Features
 
@@ -21,7 +20,6 @@ A RESTful API built with Node.js, Express.js, and MongoDB to manage books and us
 - **Filter Books**: Filter books by author and price range.
 - **Pagination**: Fetch books in a paginated manner.
 
----
 
 ## API Endpoints
 
@@ -42,11 +40,6 @@ A RESTful API built with Node.js, Express.js, and MongoDB to manage books and us
 | GET    | `/books/search`        | Search books by title         | No        |
 | GET    | `/books/filter`        | Filter books by author/price  | No        |
 | GET    | `/booksPagin`          | Fetch paginated books         | No        |
-
----
-
-## Middleware
-- **Authentication**: Protect routes using JWT-based token validation.
 
 ---
 
