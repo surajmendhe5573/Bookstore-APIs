@@ -13,10 +13,10 @@ A RESTful API built with Node.js, Express.js, and MongoDB to manage books and us
 
 ### Book Management
 - **Add Book**: Add new books to the database. (Protected)
-- **Update Book**: Update book details by ID. (Protected)
-- **Delete Book**: Delete a book by ID. (Protected)
 - **Get All Books**: Retrieve a list of all books.
 - **Get Book by ID**: Fetch book details by ID.
+- **Update Book**: Update book details by ID. (Protected)
+- **Delete Book**: Delete a book by ID. (Protected)
 - **Search Books**: Search for books by title.
 - **Filter Books**: Filter books by author and price range.
 - **Pagination**: Fetch books in a paginated manner.
