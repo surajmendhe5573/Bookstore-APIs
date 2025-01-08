@@ -96,4 +96,59 @@ const deleteBook= async(req, res)=>{
     }
 }
 
-module.exports= {addBook, getAllBooks, getBookById, updateBook, deleteBook};
+const searchBook= async(req, res)=>{
+    try {
+        const {title}= req.query;
+
+        if(!title){
+            return res.status(400).json({message: 'Title query parameter is required'});
+        }
+
+        const books= await Book.find({
+            title: {$regex: title, $options: 'i'}
+        });
+
+        if(books.length==0){
+            return res.status(404).json({message: 'No books found with the given title'});
+        }
+
+        res.status(200).json({message: 'Books found successfully', data:books});
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message: 'Internal server error'});
+    }
+}
+
+const filterBooks= async(req, res)=>{
+    try {
+        const {author, minPrice, maxPrice}= req.query;
+
+        const filter= {};
+
+        if(author){
+            filter.author= {$regex: author, $options:'i'}
+        }
+
+        if(minPrice){
+            filter.price= {...filter.price, $gte:parseFloat(minPrice)};
+        }
+
+
+        if(minPrice){
+            filter.price= {...filter.price, $lte:parseFloat(maxPrice)};
+        }
+
+        const books= await Book.find(filter);
+        if(books.length==0){
+            return res.status(404).json({message: 'No books found matching the filter criteria.'});
+        }
+        
+        res.status(200).json({message: 'Books found successfully', data:books});
+    
+    } catch (error) {
+        res.status(500).json({message: 'Internal server error'});
+    }
+}
+
+module.exports= {addBook, getAllBooks, getBookById, updateBook, deleteBook, searchBook, filterBooks};
