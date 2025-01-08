@@ -151,4 +151,28 @@ const filterBooks= async(req, res)=>{
     }
 }
 
-module.exports= {addBook, getAllBooks, getBookById, updateBook, deleteBook, searchBook, filterBooks};
+// pagination api
+const fetchAllBooks= async(req, res)=>{
+    try {
+        const page= parseInt(req.query.page) || 1
+        const perPage= 3;
+        const totalBooks= await Book.countDocuments();
+        const totalPages= Math.ceil(totalBooks/perPage);
+
+        if(page > totalPages){
+            return res.status(404).json({message: 'Page not found'});
+        }
+
+        const books= await Book.find()
+        .skip((page - 1) * perPage)
+        .limit(perPage)
+        .exec()
+
+        res.status(200).json({books, totalPages, page});
+        
+    } catch (error) {
+        res.status(500).json({message: 'Internal server error'});
+    }
+}
+
+module.exports= {addBook, getAllBooks, getBookById, updateBook, deleteBook, searchBook, filterBooks, fetchAllBooks};
